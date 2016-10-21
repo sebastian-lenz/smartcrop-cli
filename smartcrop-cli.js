@@ -71,12 +71,8 @@ var options = _.extend({}, argv.config, _.omit(argv, 'config', 'quality', 'faceD
 function resize(result) {
   var crop = result.topCrop;
   var cmd = gm(input)
-    .crop(crop.width, crop.height, crop.x, crop.y)
-    .resize(options.width, options.height)
-    .unsharp('2x0.5+1+0.008')
-    .colorspace('sRGB')
-    .autoOrient()
-    .strip();
+      .crop(crop.width, crop.height, crop.x, crop.y)
+      .resize(options.width, options.height, '!');
 
   if (argv.quality) {
     cmd = cmd.quality(argv.quality);
